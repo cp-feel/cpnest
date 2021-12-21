@@ -23,6 +23,29 @@ const testTableParams: CreateTableInput = {
     ReadCapacityUnits: 10, // 읽기 용량 단위
     WriteCapacityUnits: 10, // 쓰기 용량 단위
   },
+  LocalSecondaryIndexes: [
+    // optional (list of LocalSecondaryIndex)
+    {
+      IndexName: 'index_id_lastName',
+      KeySchema: [
+        {
+          // Required HASH type attribute - must match the table's HASH key attribute name
+          AttributeName: 'id',
+          KeyType: 'HASH',
+        },
+        {
+          // alternate RANGE key attribute for the secondary index
+          AttributeName: 'lastName',
+          KeyType: 'RANGE',
+        },
+      ],
+      Projection: {
+        // required
+        ProjectionType: 'ALL', // (ALL | KEYS_ONLY | INCLUDE)
+      },
+    },
+    // ... more local secondary indexes ...
+  ],
 };
 
 const command = new CreateTableCommand(testTableParams);
