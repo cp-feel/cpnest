@@ -43,13 +43,12 @@ input UpdateUserInput {
 }
 
 input CreateTestDynamoInput {
-  id: Int!
   firstName: String
   lastName: String
 }
 
 input UpdateTestDynamoInput {
-  id: Int!
   firstName: String
   lastName: String
+  id: Int!
 }

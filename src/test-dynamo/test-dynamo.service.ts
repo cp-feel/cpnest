@@ -1,38 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import * as AWS from 'aws-sdk';
+import awsConfigUpdate from 'src/client';
+import { v4 as uuid } from 'uuid';
 import { CreateTestDynamoInput } from './dto/create-test-dynamo.input';
 import { UpdateTestDynamoInput } from './dto/update-test-dynamo.input';
 import { TestDynamo } from './entities/test-dynamo.entity';
 
 @Injectable()
 export class TestDynamoService {
-  private testDynamo: TestDynamo[];
-
   create(createTestDynamoInput: CreateTestDynamoInput) {
     const params = {
       TableName: 'Tests',
       Item: {
-        id: { N: createTestDynamoInput.id.toString() },
+        id: { N: uuid.toString() },
         lastName: { S: createTestDynamoInput.lastName },
         firstName: { S: createTestDynamoInput.firstName },
       },
     };
 
-    // how to generating id
-    // sad
-    // N = string
-    // CreateTestDynamoInput id value check
+    // aws config setting
+    awsConfigUpdate;
 
-    console.log(params.Item);
-
-    AWS.config.update({
-      accessKeyId: 'AKIAZBFZOWRX4BILICHR',
-      region: 'us-east-2',
-    });
-
+    // create DynamoDB service object
     const docClient = new AWS.DynamoDB();
-
-    console.log(docClient);
 
     docClient.putItem(params, function (err, data) {
       if (err) {
@@ -42,26 +32,34 @@ export class TestDynamoService {
     });
   }
 
-  findAll() {
+  async findAll() {
     const params = {
       TableName: 'Tests',
     };
 
-    AWS.config.update({
-      accessKeyId: 'AKIAZBFZOWRX4BILICHR',
-      region: 'us-east-2',
-    });
+    // aws config setting
+    awsConfigUpdate;
 
+    // create DynamoDB service object
     const docClient = new AWS.DynamoDB();
 
-    console.log(docClient);
+    const items = (await docClient.scan(params).promise()).Items;
 
-    docClient.scan(params, function (err, data) {
-      if (err) {
-        console.log(err);
-      }
-      console.log('data', data);
-    });
+    const result: TestDynamo[] = []; // initialize object
+    // result = result.concat(items);
+    for (const idx in items) {
+      console.log(items[idx]);
+      const item = items[idx];
+      result.push(
+        new TestDynamo(
+          item.id.N ?? '-1',
+          item.lastName ? item.lastName.S : '',
+          item.firstName ? item.firstName.S : '',
+        ),
+      );
+    }
+
+    return result;
   }
 
   findOne(id: number) {

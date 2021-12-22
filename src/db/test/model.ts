@@ -23,6 +23,7 @@ const testTableParams: CreateTableInput = {
     ReadCapacityUnits: 10, // 읽기 용량 단위
     WriteCapacityUnits: 10, // 쓰기 용량 단위
   },
+  // GlobalSecondaryIndexes: [],
   LocalSecondaryIndexes: [
     // optional (list of LocalSecondaryIndex)
     {
