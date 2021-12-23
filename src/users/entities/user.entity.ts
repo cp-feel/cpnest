@@ -34,14 +34,45 @@ export class User {
   language: string;
 
   @Field({ nullable: false })
-  ratings: string;
+  ratings: Rating;
 
   @Field({ nullable: false })
-  payment_info: string;
+  payment_info: PaymentInfo[];
 
   @Field({ nullable: false })
   createdAt: string;
 
   @Field({ nullable: false })
   updatedAt: string;
+}
+
+class Rating {
+  @Field()
+  average: number;
+
+  @Field()
+  rating: number;
+
+  @Field()
+  divide: number;
+
+  @Field()
+  ratings_count: number;
+}
+
+class PaymentInfo {
+  @Field()
+  credit_no: string;
+
+  @Field()
+  expired: string;
+
+  @Field()
+  cvv: string;
+
+  @Field()
+  credit_name: string;
+
+  @Field()
+  check_condition: string;
 }
