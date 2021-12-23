@@ -5,6 +5,7 @@ import { UsersModule } from './test_graphQL/test_graphQL.module';
 import { ApiusersModule } from './test_api/test_api.module';
 import { TestDynamoModule } from './test-dynamo/test-dynamo.module';
 import { UsersModule } from './users/users.module';
+import { ApiusersModule } from './apiusers/apiusers.module';
 
 @Module({
   imports: [
