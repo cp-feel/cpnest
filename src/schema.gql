@@ -2,16 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
+type TestDynamo {
   id: Int!
   firstName: String
   lastName: String
 }
 
-type TestDynamo {
-  id: Int!
-  firstName: String
-  lastName: String
+type User {
+  user_id: String!
+  description: String!
+  user_passport_name: String!
+  user_name: String!
+  email: String!
+  phone: String!
+  language: String!
+  createdAt: String!
+  updatedAt: String!
 }
 
 type Query {
@@ -22,8 +28,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  createUserTest111(createUserInput: CreateUserInput!): User!
   removeUser(id: Int!): User!
   createTestDynamo(createTestDynamoInput: CreateTestDynamoInput!): TestDynamo!
   updateTestDynamo(updateTestDynamoInput: UpdateTestDynamoInput!): TestDynamo!
@@ -31,15 +36,10 @@ type Mutation {
 }
 
 input CreateUserInput {
-  id: Int!
-  firstName: String
-  lastName: String
-}
-
-input UpdateUserInput {
-  id: Int!
-  firstName: String
-  lastName: String
+  user_id: String!
+  description: String!
+  user_passport_name: String!
+  user_name: String!
 }
 
 input CreateTestDynamoInput {

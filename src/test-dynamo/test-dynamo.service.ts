@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as AWS from 'aws-sdk';
-import awsConfigUpdate from 'src/client';
+import { awsConfigUpdate } from 'src/client';
+// import awsConfigUpdate from 'src/client';
 import { v4 as uuid } from 'uuid';
 import { CreateTestDynamoInput } from './dto/create-test-dynamo.input';
 import { UpdateTestDynamoInput } from './dto/update-test-dynamo.input';

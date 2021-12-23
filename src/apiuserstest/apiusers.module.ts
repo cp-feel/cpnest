@@ -4,6 +4,6 @@ import { ApiusersController } from './apiusers.controller';
 
 @Module({
   controllers: [ApiusersController],
-  providers: [ApiusersService]
+  providers: [ApiusersService],
 })
-export class ApiusersModule {}
+export class ApiusersTestModule {}

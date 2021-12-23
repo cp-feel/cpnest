@@ -1,8 +1,13 @@
 import * as AWS from 'aws-sdk';
+import * as dynamoose from 'dynamoose';
 
-const awsConfigUpdate = AWS.config.update({
+export const awsConfigUpdate = AWS.config.update({
   accessKeyId: 'AKIAZBFZOWRX4BILICHR',
   region: 'us-east-2',
 });
 
-export default awsConfigUpdate;
+export const ddb = dynamoose.aws.sdk.config.update({
+  accessKeyId: 'AKIAZBFZOWRX4BILICHR',
+  //   secretAccessKey: 'SECRET',
+  region: 'us-east-2',
+});
